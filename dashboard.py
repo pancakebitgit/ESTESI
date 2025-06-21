@@ -32,9 +32,9 @@ inusual_file = st.sidebar.file_uploader("Upload Inusual.csv (Unusual Option Flow
 
 # --- Data Loading and Caching ---
 @st.cache_data # Use st.cache_data for dataframes
-def load_data(file, handler_func):
+def load_data(file, _handler_func): # Changed handler_func to _handler_func
     if file:
-        df = handler_func(file)
+        df = _handler_func(file) # Use the underscored parameter
         if df is not None and not df.empty:
             return df
     return None
