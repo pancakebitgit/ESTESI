@@ -32,7 +32,8 @@ def load_and_clean_cadena(uploaded_file):
 
         # Convert 'Last Trade' to datetime if it exists
         if 'Last Trade' in df.columns:
-            df['Last Trade'] = pd.to_datetime(df['Last Trade'], errors='coerce')
+            # Specify format to avoid UserWarning and ensure correct parsing for MM/DD/YY
+            df['Last Trade'] = pd.to_datetime(df['Last Trade'], format='%m/%d/%y', errors='coerce')
 
         # Ensure 'Type' column is string
         if 'Type' in df.columns:
